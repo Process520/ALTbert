@@ -51,7 +51,7 @@ model.compile(loss = 'categorical_crossentropy',
               metrics = ['accuracy'])
 
 # 模型训练以及评估
-history = model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=32, epochs=100)
+history = model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=32, epochs=300)
 model.save('visit_classify.h5')
 print(model.evaluate(x_test, y_test))
 
