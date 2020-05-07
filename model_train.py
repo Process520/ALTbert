@@ -40,7 +40,7 @@ y_dev = to_categorical(y_dev, num_classes)
 
 # 创建模型
 x_in = Input(shape=(312, ))
-x_out = Dense(70, activation="relu")(x_in)
+x_out = Dense(35, activation="relu")(x_in)
 x_out = BatchNormalization()(x_out)
 x_out = Dense(num_classes, activation="softmax")(x_out)
 model = Model(inputs=x_in, outputs = x_out)
@@ -51,7 +51,7 @@ model.compile(loss = 'categorical_crossentropy',
               metrics = ['accuracy'])
 
 # 模型训练以及评估
-history = model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=32, epochs=1000)
+history = model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=32, epochs=40)
 model.save('visit_classify.h5')
 print(model.evaluate(x_test, y_test))
 
