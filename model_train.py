@@ -46,12 +46,12 @@ x_out = Dense(num_classes, activation="softmax")(x_out)
 model = Model(inputs=x_in, outputs=x_out)
 print(model.summary())
 
-model.compile(loss='categorical_crossentropy',
-              optimizer=Adam(),
-              metrics=['accuracy'])
+model.compile(loss = 'categorical_crossentropy',
+              optimizer = Adam(),
+              metrics = ['accuracy'])
 
 # 模型训练以及评估
-history = model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=32, epochs=20)
+history = model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=32, epochs=100)
 model.save('visit_classify.h5')
 print(model.evaluate(x_test, y_test))
 
