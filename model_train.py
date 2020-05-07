@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from albert_zh.extract_feature import BertVector
 
 # 读取文件并进行转换
-bert_model = BertVector(pooling_strategy="REDUCE_MEAN", max_seq_len=100)
+bert_model = BertVector(pooling_strategy="REDUCE_MEAN", max_seq_len=64)
 print('begin encoding')
 f = lambda text: bert_model.encode([text])["encodes"][0]
 train_df['x'] = train_df['text'].apply(f)
@@ -40,10 +40,10 @@ y_dev = to_categorical(y_dev, num_classes)
 
 # 创建模型
 x_in = Input(shape=(312, ))
-x_out = Dense(100, activation="relu")(x_in)
+x_out = Dense(70, activation="relu")(x_in)
 x_out = BatchNormalization()(x_out)
 x_out = Dense(num_classes, activation="softmax")(x_out)
-model = Model(inputs=x_in, outputs=x_out)
+model = Model(inputs=x_in, outputs = x_out)
 print(model.summary())
 
 model.compile(loss = 'categorical_crossentropy',
